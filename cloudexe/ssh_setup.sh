@@ -5,12 +5,11 @@
 set -e
 
 if [ $# -eq 0 ]; then
-    echo "❌ Usage: $0 'ssh_connection_string'"
-    echo "Example: $0 'ssh -i key.pem root@hostname -p 22'"
-    exit 1
+    echo "🔑 Using default CloudExe SSH connection"
+    SSH_CMD="ssh -p 11292 root@inst-gw.cloudexe.tech"
+else
+    SSH_CMD="$1"
 fi
-
-SSH_CMD="$1"
 echo "🚀 Setting up H100 via SSH"
 echo "Connection: $SSH_CMD"
 echo "="*60

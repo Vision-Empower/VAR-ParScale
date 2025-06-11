@@ -14,13 +14,13 @@ git clone https://github.com/peteryuqin/VAR-ParScale.git
 cd VAR-ParScale
 ```
 
-### 🔑 Option A: SSH Access (Recommended)
+### 🔑 Option A: SSH Access (READY!)
 ```bash
-# Get SSH connection from CloudExe dashboard, then:
-./cloudexe/ssh_setup.sh "ssh -i key.pem root@hostname -p 22"
+# Automated setup with known SSH connection:
+./cloudexe/ssh_setup.sh
 
-# Execute Phase 2A via SSH
-ssh [CONNECTION] "cd /root/VAR-ParScale && python3 phase2a/enhanced_parscale_var.py"
+# Or execute directly:
+ssh -p 11292 root@inst-gw.cloudexe.tech "cd /root/VAR-ParScale && python3 phase2a/enhanced_parscale_var.py"
 ```
 
 ### 🌐 Option B: API Access (Alternative)
