@@ -6,7 +6,7 @@
 Git clone https://github.com/peteryuqin/VAR-ParScale.git and continue Phase 2A. We achieved 6% speed improvement in Phase 1. Execute enhanced implementation on H100.
 ```
 
-## ⚡ One-Command Setup
+## ⚡ Complete Setup (Required)
 
 ```bash
 # Clone repository
@@ -16,7 +16,10 @@ cd VAR-ParScale
 # Set API key
 export CLOUDEXE_APIKEY=eyJleHBpcnlfZGF0ZSI6IjIwMjYtMDYtMTEgMDA6MDA6MDAiLCJ1c2VyaWQiOiJjOGI5NmUxZS0xODVkLTRkNDUtOTY3Mi0xYTVmZTVjYjc0NGUifQ==.EhCkcWoPFzbU0IMg2jNlHU2Z2MaQnnXQeYof9x-UrWM=
 
-# Execute Phase 2A
+# CRITICAL: Setup H100 environment first
+python3 cloudexe/setup_h100_environment.py
+
+# Execute Phase 2A  
 python3 cloudexe/execute_phase2a.py
 ```
 
