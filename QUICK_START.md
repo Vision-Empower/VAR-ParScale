@@ -12,11 +12,23 @@ Git clone https://github.com/peteryuqin/VAR-ParScale.git and continue Phase 2A. 
 # Clone repository
 git clone https://github.com/peteryuqin/VAR-ParScale.git
 cd VAR-ParScale
+```
 
+### 🔑 Option A: SSH Access (Recommended)
+```bash
+# Get SSH connection from CloudExe dashboard, then:
+./cloudexe/ssh_setup.sh "ssh -i key.pem root@hostname -p 22"
+
+# Execute Phase 2A via SSH
+ssh [CONNECTION] "cd /root/VAR-ParScale && python3 phase2a/enhanced_parscale_var.py"
+```
+
+### 🌐 Option B: API Access (Alternative)
+```bash
 # Set API key
 export CLOUDEXE_APIKEY=eyJleHBpcnlfZGF0ZSI6IjIwMjYtMDYtMTEgMDA6MDA6MDAiLCJ1c2VyaWQiOiJjOGI5NmUxZS0xODVkLTRkNDUtOTY3Mi0xYTVmZTVjYjc0NGUifQ==.EhCkcWoPFzbU0IMg2jNlHU2Z2MaQnnXQeYof9x-UrWM=
 
-# CRITICAL: Setup H100 environment first
+# Setup H100 environment first
 python3 cloudexe/setup_h100_environment.py
 
 # Execute Phase 2A  
