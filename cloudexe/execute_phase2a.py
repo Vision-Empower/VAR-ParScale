@@ -7,20 +7,34 @@ Upload and execute enhanced ParScale-VAR implementation
 import requests
 import json
 import os
+import sys
+import argparse
 from pathlib import Path
 
 def main():
+    parser = argparse.ArgumentParser(description='Execute Phase 2A scripts on H100')
+    parser.add_argument('--script', default='enhanced_parscale_var.py', 
+                       help='Script to upload and execute')
+    parser.add_argument('--api', action='store_true', 
+                       help='Use API execution (default)')
+    
+    args = parser.parse_args()
+    
     api_key = "eyJleHBpcnlfZGF0ZSI6IjIwMjYtMDYtMTEgMDA6MDA6MDAiLCJ1c2VyaWQiOiJjOGI5NmUxZS0xODVkLTRkNDUtOTY3Mi0xYTVmZTVjYjc0NGUifQ==.EhCkcWoPFzbU0IMg2jNlHU2Z2MaQnnXQeYof9x-UrWM="
     
     print("🚀 VAR-ParScale Phase 2A H100 Execution")
     print("="*50)
     
-    # Upload enhanced implementation
-    print("📤 Uploading enhanced_parscale_var.py...")
+    # Determine script path
+    if args.script.startswith('phase2a/'):
+        script_path = Path("..") / args.script
+    else:
+        script_path = Path("../phase2a") / args.script
     
-    script_path = Path("../phase2a/enhanced_parscale_var.py")
+    print(f"📤 Uploading {script_path.name}...")
+    
     if not script_path.exists():
-        print("❌ Enhanced script not found!")
+        print(f"❌ Script not found at {script_path}!")
         return
     
     with open(script_path, 'r') as f:
@@ -28,7 +42,7 @@ def main():
     
     upload_data = {
         "command": "upload_file", 
-        "path": "/root/enhanced_parscale_var.py",
+        "path": f"/root/{script_path.name}",
         "content": script_content
     }
     
@@ -47,7 +61,7 @@ def main():
             print("⚡ Executing Phase 2A implementation...")
             
             exec_data = {
-                "command": "cd /root && python3 enhanced_parscale_var.py"
+                "command": f"cd /root && python3 {script_path.name}"
             }
             
             exec_response = requests.post(
